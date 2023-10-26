@@ -6,7 +6,7 @@ import { Box, Button, Typography, useTheme, useMediaQuery } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 
 // Components
-import FlexBetween from 'components/FlexBetween'
+import FlexColumn from 'components/FlexColumn'
 import Header from 'components/Header'
 import BreakdownChart from 'components/BreakdownChart'
 import OverviewChart from 'components/OverviewChart'
@@ -14,6 +14,14 @@ import StatBox from 'components/StatBox'
 
 // State api
 import { useGetDashboardQuery } from 'state/api'
+
+// styled-components
+import styled from 'styled-components'
+
+// DownloadIcon Styled
+const DownloadIconStyled = styled.div`
+    margin: 1rem 0 0.5rem 0;
+`;
 
 
 
@@ -63,24 +71,29 @@ const Dashboard = () => {
     return (
         <Box m="1.5rem 2.5rem">
 
-            <FlexBetween>
+            <FlexColumn>
                 <Header title="DASHBOARD" subtitle="Welcome To Your Dashboard." />
 
-                <Box>
-                    <Button
-                        sx={{
-                            backgroundColor: theme.palette.secondary.light,
-                            color: theme.palette.background.alt,
-                            fontSize: "14px",
-                            fontWeight: "bold",
-                            padding: "10x 20px"
-                        }}
-                    >
-                        <DownloadOutlined sx={{ mr: "10px" }} />
-                        Download Reports
-                    </Button>
-                </Box>
-            </FlexBetween>
+                <DownloadIconStyled>
+                    <Box sx={{
+                        display: "flex",
+                        justifyContent: "flex-end"
+                    }}>
+                        <Button
+                            sx={{
+                                backgroundColor: theme.palette.secondary.light,
+                                color: theme.palette.background.alt,
+                                fontSize: "14px",
+                                fontWeight: "bold",
+                                padding: "10x 20px",
+                            }}
+                        >
+                            <DownloadOutlined sx={{ mr: "10px" }} />
+                            Download Reports
+                        </Button>
+                    </Box>
+                </DownloadIconStyled>
+            </FlexColumn>
 
             <Box
                 mt="20px"
@@ -194,6 +207,7 @@ const Dashboard = () => {
 
                 </Box>
 
+
                 <Box
                     gridColumn="span 4"
                     gridRow="span 3"
@@ -211,8 +225,8 @@ const Dashboard = () => {
 
                     <BreakdownChart isDashboard={true} />
                     <Typography p="0 0.6rem" fontSize="0.8rem" sx={{ color: theme.palette.secondary[200] }}>
-                        Breakdown of real states & information via category for 
-                        revenue made for this year and total sales. 
+                        Breakdown of real states & information via category for
+                        revenue made for this year and total sales.
                     </Typography>
 
                 </Box>

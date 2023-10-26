@@ -4,15 +4,26 @@ import React from 'react'
 import { ResponsivePie } from '@nivo/pie'
 
 // @mui
-import { Box, Typography, useTheme } from '@mui/material'
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material'
 
 // State api
 import { useGetSalesQuery } from 'state/api'
 
-const BreakdownChart = ({ isDashboard = false }) => {
+import styled from 'styled-components'
+
+const MyDiv = styled.div`
+    @media(max-width: 500px) {
+        display: none;
+    }
+`
+
+
+
+const BreakdownChart = ({ isDashboard = false, legends }) => {
 
     const theme = useTheme()
     const { data, isLoading } = useGetSalesQuery()
+    const isNonMediumScreens = useMediaQuery("(min-width: 500px)")
 
     if (!data || isLoading) return "Loading..."
 
@@ -139,9 +150,11 @@ const BreakdownChart = ({ isDashboard = false }) => {
                         : "translate(-50%, -100%)",
                 }}
             >
-                <Typography variant="h6">
-                    {!isDashboard && "Total:"} ${data.yearlySalesTotal}
-                </Typography>
+                <MyDiv>
+                    <Typography variant="h6">
+                        {!isDashboard && "Total:"} ${data.yearlySalesTotal}
+                    </Typography>
+                </MyDiv>
             </Box>
         </Box>
     )
