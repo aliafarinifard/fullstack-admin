@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 
 // @mui
-import { Box, useTheme } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 
 // Components
 import Header from 'components/Header'
@@ -63,8 +63,20 @@ const Daily = () => {
         <Box m="1.5rem 2.5rem">
             <Header title="DAILY SALES" subtitle="Chart of daily sales" />
             <Box height="75vh">
-                <Box display="flex" justifyContent="flex-end">
-                    <Box>
+                <Box
+                    display="flex"
+                    justifyContent="flex-end"
+                    alignItems="flex-end"
+                    flexDirection="column"
+                    gap="1rem"
+                    sx={{ mt: "1rem" }}
+                >
+                    <Box
+                        display="flex"
+                        alignItems="center"
+                        gap="0.8rem"
+                    >
+                        <Typography>Start Date :</Typography>
                         <DatePicker
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
@@ -73,7 +85,12 @@ const Daily = () => {
                             endDate={endDate}
                         />
                     </Box>
-                    <Box>
+                    <Box
+                        display="flex"
+                        alignItems="center"
+                        gap="0.8rem"
+                    >
+                        <Typography>End Date :</Typography>
                         <DatePicker
                             selected={endDate}
                             onChange={(date) => setEndDate(date)}
